@@ -62,15 +62,30 @@
         }
 
         header {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-            position: relative;
-            background: linear-gradient(135deg, rgba(27,27,58,0.9), rgba(157,78,221,0.3));
-        }
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(135deg, rgba(27,27,58,0.9), rgba(157,78,221,0.3)),
+        url('img.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
 
         header h1 {
             font-size: 4.5rem;
@@ -88,6 +103,7 @@
             font-size: 1.8rem;
             color: var(--text-light);
             text-shadow: 0 0 10px rgba(255,255,255,0.5);
+            animation: float 6s ease-in-out infinite;
         }
 
         section {
@@ -105,14 +121,61 @@
             margin-bottom: 2rem;
             color: var(--accent-purple);
             text-shadow: 0 0 10px rgba(157,78,221,0.5);
+            align-items: center;
+            justify-content:center;
         }
 
         #about p {
             font-size: 1.2rem;
-            color: var(--text-dark);
+            color: var(--text-light);
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
             max-width: 800px;
             margin: 0 auto;
         }
+
+        /*     Referencias     */
+
+        .reference-item {
+        background: var(--space-medium);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        transition: all 0.4s ease;
+        position: relative;
+    }
+
+    .reference-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 45px rgba(157,78,221,0.2);
+    }
+
+    .reference-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-bottom: 2px solid var(--accent-purple);
+        transition: transform 0.3s ease;
+    }
+
+    .reference-item:hover .reference-image {
+        transform: scale(1.05);
+    }
+
+    .reference-item a {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
+
+    .reference-item ul {
+        list-style: none;
+        padding: 1.5rem;
+        color: var(--text-light);
+        font-family: 'Rajdhani', sans-serif;
+    }
+
+        /* Fin de las Referencias */
 
         .project-list {
             display: grid;
@@ -167,6 +230,55 @@
             background: linear-gradient(45deg, var(--accent-blue), var(--accent-purple));
             transform: scale(1.02);
         }
+        /* segunda version de lo de proyecto */
+        .project-item ul {
+    list-style: none;
+    padding: 1.5rem;
+    color: var(--text-light);
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.project-item .package-header {
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--accent-purple);
+    padding: 1rem;
+    background: rgba(78,84,221,0.1);
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.project-item .price {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--star-color);
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.project-item li {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    padding: 0.8rem 0;
+}
+
+.project-item li svg {
+    margin-right: 10px;
+    fill: var(--accent-purple);
+}
+
+.project-item li:hover svg {
+    fill: var(--accent-blue);
+}
+
+.project-item li:hover {
+    color: var(--accent-purple);
+    transition: color 0.3s ease;
+}
+
 
         /* Contacto */
         #contact {
@@ -223,6 +335,55 @@
                 font-size: 2rem;
             }
         }
+        /* Primero agregamos los estilos para la navegación */
+.nav-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(11, 11, 31, 0.9); /* Usando el color space-dark con transparencia */
+    padding: 1rem 2rem;
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.nav-header a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.nav-header a:hover {
+    background: linear-gradient(45deg, var(--accent-purple), var(--accent-blue));
+    transform: translateY(-2px);
+}
+
+/* Ajustamos el header para que no se oculte bajo la navegación */
+header {
+    padding-top: 5rem; /* Añadimos padding extra arriba */
+}
+
+/* Agregamos media query para responsividad */
+@media (max-width: 768px) {
+    .nav-header {
+        padding: 1rem;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    
+    .nav-header a {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
     </style>
 </head>
 <body>
