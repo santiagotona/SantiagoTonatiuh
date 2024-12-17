@@ -129,4 +129,10 @@
     color: #ccc;
     font-size: 0.9rem;
   }
-  
+
+.project-item img {
+    mask-image:linear-gradient(
+        black 80%,
+        transparent
+        )
+}
